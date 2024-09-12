@@ -11,7 +11,6 @@ public class HelloWorldController {
 	public String helloWorld()
 	{
 		return "Hello World!";
-		
 	}
 	
 	/** Hello World using Bean class**/
