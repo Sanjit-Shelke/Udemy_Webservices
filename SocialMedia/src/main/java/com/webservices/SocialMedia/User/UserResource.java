@@ -1,7 +1,10 @@
 package com.webservices.SocialMedia.User;
 
 import java.net.URI;
+
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +48,7 @@ public class UserResource {
 	}
 	
 	@PostMapping("/users")
-	public ResponseEntity<User> createUser(@RequestBody User user)
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user)
 	{
 		User savedUser= service.save(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest() //1.from current URI i.e. /users

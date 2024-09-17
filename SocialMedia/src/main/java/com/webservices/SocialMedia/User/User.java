@@ -2,9 +2,16 @@ package com.webservices.SocialMedia.User;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 	private Integer id;
+	
+	@Size(min=2,message = "Name should have atleast 2 character")
 	private String name;
+	
+	@Past(message = "Birthdate should be in past")
 	private LocalDate birthdate;
 	
 	
