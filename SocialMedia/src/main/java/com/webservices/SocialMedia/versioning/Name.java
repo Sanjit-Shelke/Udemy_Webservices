@@ -24,7 +24,4 @@ public class Name {
 		return "Name [firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
-	
-	
-	
 }
