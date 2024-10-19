@@ -17,8 +17,12 @@ public class CourseJdbcCommandLineRunner implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		repository.insert(new Course(1, "Spring", "UdemyCourse"));
 		repository.insert(new Course(2, "JAVA", "UdemyCourse2"));
+		repository.insert(new Course(3, "JEE", "UdemyCourse3"));
 		
 		repository.deleteById(1);
+		
+		System.out.println(repository.findById(2));
+		System.out.println(repository.findById(3));
 	}
 
 }
