@@ -1,6 +1,12 @@
 package com.jdbc_hibernet.springboot.learn_jpa_hibernate.course;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Course {
+	
+	@Id
 	private long id;
 	private String name;
 	private String author;
