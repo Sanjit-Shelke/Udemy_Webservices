@@ -2,13 +2,19 @@ package com.webservices.SocialMedia.User;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity(name = "user_details")
 public class User {
+	@Id
+	@GeneratedValue
 	private Integer id;
 	
 	@Size(min=2,message = "Name should have atleast 2 character")
