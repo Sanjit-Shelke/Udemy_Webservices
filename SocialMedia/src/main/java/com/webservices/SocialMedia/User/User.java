@@ -13,16 +13,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "user_details")
 public class User {
+	
+	protected User() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Id
 	@GeneratedValue
 	private Integer id;
 	
 	@Size(min=2,message = "Name should have atleast 2 character")
-	@JsonProperty("user_name")
+	//@JsonProperty("user_name")
 	private String name;
 	
 	@Past(message = "Birthdate should be in past")
-	@JsonProperty("birth_date")
+	//@JsonProperty("birth_date")
 	private LocalDate birthdate;
 	
 	
