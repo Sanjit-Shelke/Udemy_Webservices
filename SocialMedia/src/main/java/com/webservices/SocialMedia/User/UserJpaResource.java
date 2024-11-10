@@ -79,10 +79,11 @@ public class UserJpaResource {
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user)
 	{
 		User savedUser= repository.save(user);
+		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest() //1.from current URI i.e. /users
 						.path("/{id}")									//2.add a path i.e. /id   [/users/{id}]
 						.buildAndExpand(savedUser.getId())				//3.replace id with the created user id [/users/2]
 						.toUri();										//4.Convert it to URI 
-		return ResponseEntity.created(location ).build();				//5.return URI [/users/2] 
+		return ResponseEntity.created(location).build();				//5.return URI [/users/2] 
 	}
 }
