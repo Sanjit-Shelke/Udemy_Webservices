@@ -1,14 +1,16 @@
 package com.webservices.SocialMedia.User;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "user_details")
@@ -17,6 +19,10 @@ public class User {
 	protected User() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<Post> post;
 	
 	@Id
 	@GeneratedValue
