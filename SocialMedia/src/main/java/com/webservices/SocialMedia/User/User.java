@@ -53,6 +53,7 @@ public class User {
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -61,6 +62,14 @@ public class User {
 	}
 	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public List<Post> getPost() {
+		return post;
+	}
+
+	public void setPost(List<Post> post) {
+		this.post = post;
 	}
 
 	@Override
