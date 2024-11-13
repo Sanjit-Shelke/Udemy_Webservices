@@ -20,18 +20,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.webservices.SocialMedia.jpa.PostRepository;
 import com.webservices.SocialMedia.jpa.UserRepository;
 
 @RestController
 public class UserJpaResource {
 
-	private UserDaoService service;
+	//private UserDaoService service;
 	private UserRepository repository;
+	private PostRepository postRepository;
 	
-	public UserJpaResource(UserDaoService service, UserRepository repository)
+	public UserJpaResource(UserRepository repository,PostRepository postRepository)
 	{
-		this.service=service;
+		//this.service=service;
 		this.repository=repository;
+		this.postRepository=postRepository;
 	}
 	
 	@GetMapping("/jpa/users")
@@ -97,5 +100,24 @@ public class UserJpaResource {
 						.buildAndExpand(savedUser.getId())				//3.replace id with the created user id [/users/2]
 						.toUri();										//4.Convert it to URI 
 		return ResponseEntity.created(location).build();				//5.return URI [/users/2] 
+	}
+	
+	@PostMapping("/jpa/users/{id}/post")
+	public ResponseEntity<Object> CreatePostForUser(@PathVariable int id, @Valid @RequestBody Post post){
+		Optional<User> user= repository.findById(id);
+		
+		if (user == null) {
+			throw new UserNotFoundException("id:"+id);
+		}
+		
+		post.setUser(user.get());		
+		Post savedPost=  postRepository.save(post);
+		
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest() //1.from current URI i.e. /users
+				.path("/{id}")									//2.add a path i.e. /id   [/users/{id}]
+				.buildAndExpand(savedPost.getId())				//3.replace id with the created user id [/users/2]
+				.toUri();										//4.Convert it to URI 
+		return ResponseEntity.created(location).build();
+		
 	}
 }
